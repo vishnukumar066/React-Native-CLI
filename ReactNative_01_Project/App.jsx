@@ -1,22 +1,48 @@
-import { Text, View } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import MyButton from './src/components/MyButton';
+import Parent from './src/components/Parent';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Styling from './src/components/Styling';
+import InputText from './src/components/InputText';
+import FlatListScreen from './src/components/FlatListScreen';
+import SectionListScreen from './src/components/SectionListScreen';
+import LoginForm from './src/components/LoginForm';
+import StatusBarDemo from './src/components/StatusBarDemo';
+import UseRefHook from './src/components/UseRefHook';
 
 function App() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', paddingTop: 10, backgroundColor: '#f230f2' }}>
-      <Text
-        style={{
-          color: 'black',
-          fontSize: 20,
-          textAlign: 'center',
-          marginTop: 50,
-        }}
+    <ScrollView>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: '#f230f2', alignItems: 'center' }}
       >
-        Welcome to the React Native App!
-      </Text>
+        <Text
+          style={{
+            color: 'black',
+            fontSize: 20,
+            textAlign: 'center',
+            backgroundColor: '#a25a57',
+            width: 380,
+            borderRadius: 10,
+            marginTop: 2,
+            padding: 10,
+          }}
+        >
+          Welcome to the React Native App!
+        </Text>
 
-      <MyButton />
-    </View>
+        <StatusBarDemo />
+        <LoginForm />
+        <MyButton />
+        <Parent />
+        <Styling />
+        <InputText />
+        <SectionListScreen />
+        <FlatListScreen />
+        <MyButton />
+        <UseRefHook />
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 

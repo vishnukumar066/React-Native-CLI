@@ -1,4 +1,4 @@
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 
 const MyButton = () => {
@@ -14,8 +14,9 @@ const MyButton = () => {
     const time = new Date().toLocaleTimeString();
 
   return (
+    <ScrollView>
     <View
-      style={{ flex: 1, alignItems: 'center', marginTop: 50, width: '100%' }}
+      style={{ flex: 1, alignItems: 'center', marginTop: 10, backgroundColor: '#a25a57', height: 200, width: 380, borderRadius: 10 }}
     >
       <Text style={{ fontSize: 30, marginTop: 20, marginBottom: 20 }}>
         Value : {value}
@@ -26,9 +27,8 @@ const MyButton = () => {
       </Text>
 
       <Button title="Click Me" onPress={handleOnPress} />
-
-      <Button title="Click Me" onPress={handleOnPress} />
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
