@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# React Native
+.metro/
+.expo/
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+android/.cxx/
+
+# iOS
+ios/Pods/
+ios/build/
+ios/DerivedData/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# React Native
+*.keystore
