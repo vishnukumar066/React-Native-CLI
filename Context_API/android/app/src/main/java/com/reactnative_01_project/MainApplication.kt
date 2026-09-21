@@ -1,4 +1,4 @@
-package com.navigation
+package com.reactnative_01_project
 
 import android.app.Application
 import com.facebook.react.PackageList

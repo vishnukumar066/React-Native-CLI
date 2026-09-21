@@ -1,7 +1,7 @@
 import { Pressable, Text, View } from 'react-native';
-import SubChildContext from './SubChildContext';
 import { useContext } from 'react';
 import { CounterContext } from './ContextAPIExample';
+import SubChildContext from './SubChildContext';
 
 const ChildContext = () => {
   const { count, incrementCount } = useContext(CounterContext);
