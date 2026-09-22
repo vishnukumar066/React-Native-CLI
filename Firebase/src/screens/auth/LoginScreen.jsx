@@ -1,0 +1,245 @@
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  ActivityIndicator,
+} from 'react-native';
+
+const LoginScreen = () => {
+  const navigation = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const validateForm = () => {
+    let valid = true;
+
+    setEmailError('');
+    setPasswordError('');
+
+    if (!email.trim()) {
+      setEmailError('Email is required');
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError('Please enter a valid email');
+      valid = false;
+    }
+
+    if (!password) {
+      setPasswordError('Password is required');
+      valid = false;
+    } else if (password.length < 6) {
+      setPasswordError('Password must be at least 6 characters');
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const handleLogin = async () => {
+    if (!validateForm()) return;
+
+    try {
+      setLoading(true);
+
+      // API call will go here
+      // await loginUser({ email, password });
+
+      console.log('Login:', email);
+
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      console.log('Login failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = () => {
+    navigation.navigate('Register');
+  };
+
+  const handleForgotPassword = () => {
+    navigation.navigate('ForgotPassword');
+  };
+
+  return (
+    <KeyboardAvoidingView
+      className="mt-2.5 w-full flex-1"
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <ScrollView
+        contentContainerClassName="grow justify-center p-2.5"
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <View className="w-full max-w-[420px] self-center rounded-[10px] bg-[#beab90] p-6 shadow-lg">
+          {/* Header */}
+          <View className="mb-[30px] items-center">
+            <View className="mb-[18px] h-16 w-16 items-center justify-center rounded-[20px] bg-violet-600">
+              <Text className="text-[30px] font-extrabold text-white">
+                V
+              </Text>
+            </View>
+
+            <Text className="mb-2 text-[28px] font-extrabold text-gray-900">
+              Welcome Back 👋
+            </Text>
+
+            <Text className="text-center text-sm text-gray-500">
+              Login to continue to your account
+            </Text>
+          </View>
+
+          {/* Form */}
+          <View className="w-full">
+            {/* Email */}
+            <Text className="mb-2 text-sm font-semibold text-gray-700">
+              Email Address
+            </Text>
+
+            <View
+              className={`h-[54px] w-full flex-row items-center rounded-[10px] border bg-gray-50 px-[14px] ${
+                emailError ? 'border-red-500' : 'border-gray-200'
+              }`}
+            >
+              <Text className="mr-2.5 text-[18px]">✉</Text>
+
+              <TextInput
+                className="h-full flex-1 text-[15px] text-gray-900"
+                placeholder="Enter your email"
+                placeholderTextColor="#9CA3AF"
+                value={email}
+                onChangeText={text => {
+                  setEmail(text);
+                  setEmailError('');
+                }}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                textContentType="emailAddress"
+                returnKeyType="next"
+              />
+            </View>
+
+            {emailError ? (
+              <Text className="mb-3 mt-[5px] text-xs text-red-500">
+                {emailError}
+              </Text>
+            ) : null}
+
+            {/* Password */}
+            <View className="mt-[18px] flex-row items-center justify-between">
+              <Text className="mb-2 text-sm font-semibold text-gray-700">
+                Password
+              </Text>
+            </View>
+
+            <View
+              className={`h-[54px] w-full flex-row items-center rounded-[10px] border bg-gray-50 px-[14px] ${
+                passwordError ? 'border-red-500' : 'border-gray-200'
+              }`}
+            >
+              <Text className="mr-2.5 text-[18px]">🔒</Text>
+
+              <TextInput
+                className="h-full flex-1 text-[15px] text-gray-900"
+                placeholder="Enter your password"
+                placeholderTextColor="#9CA3AF"
+                value={password}
+                onChangeText={text => {
+                  setPassword(text);
+                  setPasswordError('');
+                }}
+                secureTextEntry={!showPassword}
+                autoCapitalize="none"
+                autoCorrect={false}
+                textContentType="password"
+                returnKeyType="done"
+                onSubmitEditing={handleLogin}
+              />
+
+              <Pressable
+                onPress={() => setShowPassword(!showPassword)}
+                hitSlop={10}
+              >
+                <Text className="text-[13px] font-bold text-violet-600">
+                  {showPassword ? 'Hide' : 'Show'}
+                </Text>
+              </Pressable>
+            </View>
+
+            <View className="mt-0.5 flex-row items-center justify-between">
+              {passwordError ? (
+                <Text className="mb-3 mt-[5px] text-xs text-red-500">
+                  {passwordError}
+                </Text>
+              ) : null}
+
+              <Pressable onPress={handleForgotPassword}>
+                <Text className="text-[13px] font-semibold text-violet-600">
+                  Forgot Password?
+                </Text>
+              </Pressable>
+            </View>
+
+            {/* Login Button */}
+            <Pressable
+              onPress={handleLogin}
+              disabled={loading}
+              className="mt-6 h-[54px] items-center justify-center rounded-[10px] bg-violet-600 shadow-lg"
+              style={({ pressed }) => [
+                pressed && {
+                  transform: [{ scale: 0.98 }],
+                },
+                loading && {
+                  opacity: 0.7,
+                },
+              ]}
+            >
+              {loading ? (
+                <ActivityIndicator color="#FFFFFF" />
+              ) : (
+                <Text className="text-base font-bold text-white">
+                  Login
+                </Text>
+              )}
+            </Pressable>
+
+            {/* Register */}
+            <View className="mt-6 flex-row justify-center">
+              <Text className="text-sm text-gray-500">
+                Don't have an account?
+              </Text>
+
+              <Pressable onPress={handleRegister}>
+                <Text className="text-sm font-bold text-violet-600">
+                  {' '}
+                  Register
+                </Text>
+              </Pressable>
+            </View>
+          </View>
+
+          {/* Footer */}
+          <Text className="mt-[25px] text-center text-[11px] leading-[17px] text-gray-400">
+            By continuing, you agree to our Terms & Privacy Policy.
+          </Text>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+};
+
+export default LoginScreen;

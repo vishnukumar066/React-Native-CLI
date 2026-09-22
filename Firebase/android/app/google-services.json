@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "508923752599",
+    "project_id": "rnlearning-41016",
+    "storage_bucket": "rnlearning-41016.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508923752599:android:9d8f778fd1c711ae86f9d2",
+        "android_client_info": {
+          "package_name": "com.navigation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8jzyMxwBcvON-_lJkpQtVHbwaJucBIXI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
