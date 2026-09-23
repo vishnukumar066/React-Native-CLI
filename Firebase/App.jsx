@@ -7,6 +7,7 @@ function App() {
   return (
     <View>
       <Text>Viraj Vishnu</Text>
+      <Text>Vishnu</Text>
     </View>
   );
 }
