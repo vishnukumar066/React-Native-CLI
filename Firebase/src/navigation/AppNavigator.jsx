@@ -5,7 +5,7 @@ import MainDrawer from './drawers/MainDrawer';
 import MainTabs from './tabs/MainTabs';
 
 const AppNavigator = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   return (
     <NavigationContainer>
       {isAuthenticated ? <MainDrawer /> : <AuthStack />}

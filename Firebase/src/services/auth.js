@@ -2,27 +2,46 @@ import auth from '@react-native-firebase/auth';
 
 export const registerUser = async (email, password) => {
   try {
+    const normalizedEmail = email.trim().toLowerCase();
+
     const userCredential = await auth().createUserWithEmailAndPassword(
-      email,
+      normalizedEmail,
       password,
     );
-    await userCredential.user.sendEmailVerification();
-    return userCredential.user;
+
+    const user = userCredential.user;
+
+    await user.sendEmailVerification();
+
+    return user;
   } catch (error) {
-    let errorMessage;
     switch (error.code) {
       case 'auth/email-already-in-use':
-        errorMessage =
-          'This email is already in use, please use diffferent email.';
-        break;
+        throw new Error(
+          'This email is already registered. Please use a different email.',
+        );
+
       case 'auth/invalid-email':
-        errorMessage = 'Invalid email address.';
-        break;
+        throw new Error('Please enter a valid email address.');
+
       case 'auth/weak-password':
-        errorMessage = 'Please use strong password.';
-        break;
+        throw new Error('Please use a stronger password.');
+
+      case 'auth/operation-not-allowed':
+        throw new Error(
+          'Email/password authentication is not enabled in Firebase.',
+        );
+
+      case 'auth/network-request-failed':
+        throw new Error(
+          'Network error. Please check your internet connection.',
+        );
+
+      case 'auth/too-many-requests':
+        throw new Error('Too many attempts. Please try again later.');
+
       default:
-        errorMessage = 'An unknown error occured.';
+        throw new Error('Registration failed. Please try again.');
     }
   }
 };

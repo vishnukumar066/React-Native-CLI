@@ -9,7 +9,9 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
+import { registerUser } from '../../services/auth';
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
@@ -66,12 +68,16 @@ const RegisterScreen = () => {
       // API call will go here
       // await loginUser({ email, password });
 
+      await registerUser(email, password);
+      Alert.alert('Success', 'An email verification code has been sent.');
+
       console.log('Login:', email);
 
+      setName('');
       setEmail('');
       setPassword('');
     } catch (error) {
-      console.log('Login failed');
+      Alert.alert('Registration failed', error.message);
     } finally {
       setLoading(false);
     }
@@ -99,9 +105,7 @@ const RegisterScreen = () => {
           {/* Header */}
           <View className="mb-[30px] items-center">
             <View className="mb-[18px] h-16 w-16 items-center justify-center rounded-[20px] bg-violet-600">
-              <Text className="text-[30px] font-extrabold text-white">
-                V
-              </Text>
+              <Text className="text-[30px] font-extrabold text-white">V</Text>
             </View>
 
             <Text className="mb-2 text-[28px] font-extrabold text-gray-900">
@@ -248,9 +252,7 @@ const RegisterScreen = () => {
               {loading ? (
                 <ActivityIndicator color="#FFFFFF" />
               ) : (
-                <Text className="text-base font-bold text-white">
-                  Register
-                </Text>
+                <Text className="text-base font-bold text-white">Register</Text>
               )}
             </Pressable>
 
@@ -261,10 +263,7 @@ const RegisterScreen = () => {
               </Text>
 
               <Pressable onPress={handleLogin}>
-                <Text className="text-sm font-bold text-violet-600">
-                  {' '}
-                  Login
-                </Text>
+                <Text className="text-sm font-bold text-violet-600">Login</Text>
               </Pressable>
             </View>
           </View>
@@ -275,9 +274,7 @@ const RegisterScreen = () => {
               onPress={handleGoback}
               className="mt-6 h-[54px] items-center justify-center rounded-[10px] bg-violet-600 shadow-lg"
             >
-              <Text className="text-base font-bold text-white">
-                Go Back
-              </Text>
+              <Text className="text-base font-bold text-white">Go Back</Text>
             </Pressable>
           </View>
 

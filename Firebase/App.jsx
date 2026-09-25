@@ -4,12 +4,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 
 function App() {
   // return <AppNavigator />;
-  return (
-    <View>
-      <Text>Viraj Vishnu</Text>
-      <Text>Vishnu</Text>
-    </View>
-  );
+  return <AppNavigator />;
 }
 
 export default App;
