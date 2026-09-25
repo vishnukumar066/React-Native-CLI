@@ -16,9 +16,9 @@ import { registerUser } from '../../services/auth';
 const RegisterScreen = () => {
   const navigation = useNavigation();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState('Vishnu Kumar');
+  const [email, setEmail] = useState('vishnukumarhs077@gmail.com');
+  const [password, setPassword] = useState('Vishnu@13');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [nameError, setNameError] = useState('');
@@ -69,7 +69,10 @@ const RegisterScreen = () => {
       // await loginUser({ email, password });
 
       await registerUser(email, password);
-      Alert.alert('Success', 'An email verification code has been sent.');
+      Alert.alert(
+        'Registration Successful',
+        'A verification email has been sent. Please check your inbox and spam folder.',
+      );
 
       console.log('Login:', email);
 

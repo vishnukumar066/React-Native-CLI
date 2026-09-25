@@ -9,13 +9,15 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
+import { loginUser } from '../../services/auth';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('vishnukumarhs077@gmail.com');
+  const [password, setPassword] = useState('Vishnu@13');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
@@ -54,13 +56,19 @@ const LoginScreen = () => {
 
       // API call will go here
       // await loginUser({ email, password });
+      const { emailVerified } = await loginUser(email, password);
+      if (!emailVerified) {
+        Alert.alert('Email not verified', 'Please verify email to login.');
+      }
+      Alert.alert('Success', 'LoggedIn Successful');
 
       console.log('Login:', email);
 
       setEmail('');
       setPassword('');
     } catch (error) {
-      console.log('Login failed');
+      console.log('Login failed', error.message);
+      Alert.alert('Login failed', error.message);
     } finally {
       setLoading(false);
     }
@@ -88,9 +96,7 @@ const LoginScreen = () => {
           {/* Header */}
           <View className="mb-[30px] items-center">
             <View className="mb-[18px] h-16 w-16 items-center justify-center rounded-[20px] bg-violet-600">
-              <Text className="text-[30px] font-extrabold text-white">
-                V
-              </Text>
+              <Text className="text-[30px] font-extrabold text-white">V</Text>
             </View>
 
             <Text className="mb-2 text-[28px] font-extrabold text-gray-900">
@@ -211,9 +217,7 @@ const LoginScreen = () => {
               {loading ? (
                 <ActivityIndicator color="#FFFFFF" />
               ) : (
-                <Text className="text-base font-bold text-white">
-                  Login
-                </Text>
+                <Text className="text-base font-bold text-white">Login</Text>
               )}
             </Pressable>
 

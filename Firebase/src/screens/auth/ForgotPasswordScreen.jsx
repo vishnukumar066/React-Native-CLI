@@ -9,12 +9,14 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
+import { forgotPassword } from '../../services/auth';
 
 const ForgotPasswordScreen = () => {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('vishnukumarhs077@gmail.com');
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
 
@@ -42,12 +44,18 @@ const ForgotPasswordScreen = () => {
 
       // API call will go here
       // await loginUser({ email, password });
+      await forgotPassword(email);
+      Alert.alert(
+        'Reset email send successfully',
+        'A password reset email has been sent. Please check your inbox and spam folder.',
+      );
 
       console.log('Login:', email);
 
       setEmail('');
     } catch (error) {
       console.log('Submission failed');
+      Alert.alert('Password reset failed', error.message);
     } finally {
       setLoading(false);
     }
@@ -71,9 +79,7 @@ const ForgotPasswordScreen = () => {
           {/* Header */}
           <View className="mb-[30px] items-center">
             <View className="mb-[18px] h-16 w-16 items-center justify-center rounded-[20px] bg-violet-600">
-              <Text className="text-[30px] font-extrabold text-white">
-                V
-              </Text>
+              <Text className="text-[30px] font-extrabold text-white">V</Text>
             </View>
 
             <Text className="mb-2 text-[28px] font-extrabold text-gray-900">
@@ -139,17 +145,13 @@ const ForgotPasswordScreen = () => {
               {loading ? (
                 <ActivityIndicator color="#FFFFFF" />
               ) : (
-                <Text className="text-base font-bold text-white">
-                  Submit
-                </Text>
+                <Text className="text-base font-bold text-white">Submit</Text>
               )}
             </Pressable>
 
             {/* Login */}
             <View className="mt-6 flex-row justify-center">
-              <Text className="text-sm text-gray-500">
-                Back to
-              </Text>
+              <Text className="text-sm text-gray-500">Back to</Text>
 
               <Pressable onPress={handleLogin}>
                 <Text className="text-sm font-bold text-violet-600">
