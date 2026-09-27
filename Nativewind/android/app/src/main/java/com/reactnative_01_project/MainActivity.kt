@@ -1,7 +1,4 @@
-package com.navigation
-
-import android.os.Bundle
-import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
+package com.reactnative_01_project
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -14,18 +11,12 @@ class MainActivity : ReactActivity() {
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
    */
-  override fun getMainComponentName(): String = "Navigation"
+  override fun getMainComponentName(): String = "ReactNative_01_Project"
 
   /**
    * Returns the instance of the [ReactActivityDelegate]. We use [DefaultReactActivityDelegate]
    * which allows you to enable New Architecture with a single boolean flags [fabricEnabled]
    */
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
-    super.onCreate(savedInstanceState)
-  }
-
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
 }
