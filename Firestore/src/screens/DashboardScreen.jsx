@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import ItemCrudComponent from '../firestore/ItemCrudComponent';
+import ItemCrudComponent from '../firestoreViraj/ItemCrudComponent';
 
 const DashboardScreen = () => {
   return <ItemCrudComponent />;

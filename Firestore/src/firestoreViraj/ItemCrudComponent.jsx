@@ -8,14 +8,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { addItem, deleteItem, getAllItems, updateItem } from './database';
 
-// import {
-//   addItem,
-//   getAllItems,
-//   updateItem,
-//   deleteItem,
-// } from '../services/itemService';
+import { addItem, deleteItem, getAllItems, updateItem } from './database';
 
 const ItemCrudComponent = () => {
   const [items, setItems] = useState([]);
