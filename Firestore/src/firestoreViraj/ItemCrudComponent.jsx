@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import { addItem, deleteItem, getAllItems, updateItem } from './database';
+import VirajOS from './VirajOS';
 
 const ItemCrudComponent = () => {
   const [items, setItems] = useState([]);
@@ -207,6 +208,7 @@ const ItemCrudComponent = () => {
   return (
     <View className="flex-1 bg-gray-100">
       {/* HEADER */}
+      <VirajOS />
 
       <View className="bg-black px-5 pb-5 pt-14">
         <Text className="text-2xl font-bold text-white">Item Manager</Text>

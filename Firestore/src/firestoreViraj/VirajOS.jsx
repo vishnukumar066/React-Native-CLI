@@ -4,7 +4,7 @@ import React from 'react';
 const VirajOS = () => {
   return (
     <View>
-      <Text>VirajOS</Text>
+      <Text>Viraj Vishnu</Text>
     </View>
   );
 };
