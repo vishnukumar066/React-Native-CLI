@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Button } from 'react-native';
 import ImageComponentExample from '../components/ImageComponentExample';
+import SwitchButton from '../components/SwitchButton';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -18,6 +19,8 @@ const ProfileScreen = () => {
           onPress={() => navigation.navigate('Settings')}
         />
       </View>
+
+      <SwitchButton />
     </View>
   );
 };

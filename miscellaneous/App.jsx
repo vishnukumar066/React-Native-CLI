@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 
 function App() {
-  // return <AppNavigator />;
   useEffect(() => {
     SplashScreen.hide();
   }, []);
