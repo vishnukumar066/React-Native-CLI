@@ -9,15 +9,7 @@ const ProfileScreen = () => {
     <View>
       <ImageComponentExample />
       <View style={{ marginTop: 350, gap: 15 }}>
-        <Text>ProfileScreen</Text>
-        <Button
-          title="Go to home page"
-          onPress={() => navigation.navigate('Home')}
-        />
-        <Button
-          title="Go to settings page"
-          onPress={() => navigation.navigate('Settings')}
-        />
+        <Text className="text-lg font-bold">ProfileScreen</Text>
       </View>
 
       <SwitchButton />

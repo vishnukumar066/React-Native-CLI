@@ -1,11 +1,8 @@
 import { View, Text } from 'react-native';
+import ToastDemo from '../../components/toast/ToastDemo';
 
 const Tab2Screen = () => {
-  return (
-    <View>
-      <Text>Tab2Screen</Text>
-    </View>
-  );
+  return <ToastDemo />;
 };
 
 export default Tab2Screen;

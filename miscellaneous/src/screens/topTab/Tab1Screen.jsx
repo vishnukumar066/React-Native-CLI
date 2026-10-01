@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   View,
@@ -9,6 +9,7 @@ import {
   Image,
   Pressable,
   Dimensions,
+  RefreshControl,
 } from 'react-native';
 
 import {
@@ -91,11 +92,24 @@ const products = [
 ];
 
 const Tab1Screen = () => {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    // Simulate a network request
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 4000);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
         {/* ================= HEADER ================= */}
 
