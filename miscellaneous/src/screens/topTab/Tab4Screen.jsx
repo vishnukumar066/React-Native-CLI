@@ -1,11 +1,8 @@
 import { View, Text } from 'react-native';
+import FilterBottomSheet from '../../components/bottomSheet/FilterBottomSheet';
 
 const Tab4Screen = () => {
-  return (
-    <View>
-      <Text>Tab4Screen</Text>
-    </View>
-  );
+  return <FilterBottomSheet />;
 };
 
 export default Tab4Screen;
