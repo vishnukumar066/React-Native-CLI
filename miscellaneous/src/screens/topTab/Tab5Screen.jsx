@@ -1,11 +1,8 @@
 import { View, Text } from 'react-native';
+import DocumentPlayground from '../../components/documentsPicker/DocumentPlayground';
 
 const Tab5Screen = () => {
-  return (
-    <View>
-      <Text>Tab5Screen</Text>
-    </View>
-  );
+  return <DocumentPlayground />;
 };
 
 export default Tab5Screen;
